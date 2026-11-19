@@ -20,3 +20,14 @@ A potential use case is a home IoT weather station using web interface and OpenW
 <p align="center">
   <img src="Pictures/iot_diagrams.png" alt="Retro AirQ Box" width="1000">
 </p>
+<hr>
+Bill of Materials (BOM)
+
+| Category | Component | Description / Model | Interface |
+| :--- | :--- | :--- | :--- |
+| **Microcontroller** | ESP32 Dev Board | 30-pin version (15 pins per side) | — |
+| **Display** | E-Ink Display Module | 4.2" 400×300 px e-Paper (Waveshare 13353) | SPI |
+| **Sensor** | AHT20 + BMP280 | Temperature, humidity, and barometric pressure sensor module | I2C |
+| **Sensor** | SGP30 | Indoor air quality sensor (TVOC & eCO₂) | I2C |
+| **Sensor** | SCD40 | True NDIR CO₂ sensor (with temp & humidity) | I2C |
+| **Sensor** | PMS5003 | Laser particulate matter sensor (PM1.0, PM2.5, PM10) | UART |
