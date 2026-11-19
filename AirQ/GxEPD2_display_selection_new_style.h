@@ -1,0 +1,26 @@
+#pragma once
+
+#define GxEPD2_DISPLAY_CLASS GxEPD2_BW
+#define GxEPD2_DRIVER_CLASS GxEPD2_420_GDEY042T81 // GDEY042T81 400x300, SSD1683
+
+#ifndef EPD_CS
+#define EPD_CS SS
+#endif
+
+#define GxEPD2_BW_IS_GxEPD2_BW true
+#define IS_GxEPD(c, x) (c##x)
+#define IS_GxEPD2_BW(x) IS_GxEPD(GxEPD2_BW_IS_, x)
+
+#include "GxEPD2_selection_check.h"
+
+#if defined(ARDUINO_ARCH_ESP32)
+#define MAX_DISPLAY_BUFFER_SIZE 65536ul
+#define MAX_HEIGHT(EPD) (EPD::HEIGHT <= MAX_DISPLAY_BUFFER_SIZE / (EPD::WIDTH / 8) ? EPD::HEIGHT : MAX_DISPLAY_BUFFER_SIZE / (EPD::WIDTH / 8))
+
+GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)> display(
+  GxEPD2_DRIVER_CLASS(/*CS=*/ EPD_CS, /*DC=*/ 17, /*RST=*/ 16, /*BUSY=*/ 4)
+);
+
+#undef MAX_DISPLAY_BUFFER_SIZE
+#undef MAX_HEIGHT
+#endif
